@@ -1,0 +1,31 @@
+name: tracee
+summary: Aquasecurity Tracee Runtime Security and Forensic tool using eBPF 
+description: |
+      Tracee is a runtime security and forensics tool for Linux based cloud 
+      deployments. It uses eBPF to trace the host OS and applications at 
+      runtime, and analyzes collected events in order to detect suspicious 
+      behavioral patterns. It can be run as a daemon-set in your kubernetes 
+      environment, but is flexible to be run for many purposes on any Linux 
+      based hosts. It can be delivered via Helm, as a docker container, or 
+      as a small set of static binaries.
+
+      The goal of Tracee is to serve as an easy to use and effective solution
+      for learning when cloud native attacks occur in your environment. By 
+      leveraging Aqua's advanced security research, performant eBPF based 
+      detection, and cloud native first approach Tracee makes runtime 
+      detection accesible, powerful, and effective.
+version: git
+grade: stable
+base: core20
+
+confinement: classic
+
+apps:
+  trivy:
+    command: bin/tracee
+
+parts:
+  trivy:
+    plugin: go
+    source-type: git
+    source: https://github.com/aquasecurity/tracee
